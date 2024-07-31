@@ -41,9 +41,6 @@ Usage
 
 Here’s how you can use the FENICE package to evaluate the factual consistency of document summaries:
 
-
-Step 1: Import the package
-
 ```sh
 from metric.FENICE import FENICE
 fenice = FENICE()
@@ -98,6 +95,13 @@ To cite this work in your research:
       url={https://arxiv.org/abs/2403.02270}, 
 }
 ```
+
+## AggreFact evaluation
+To replicate the evaluation on AggreFact:
+```sh
+PYTHONPATH=. python eval/aggrefact.py
+```
+
 
 ## License
 This work is under the [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) license](https://creativecommons.org/licenses/by-nc-sa/4.0/).
