@@ -71,7 +71,7 @@ class FENICE:
                 coref_clusters = self.coref_clusters_cache[doc_id]
                 # modified versions of {aligned_sentence} obtained through coreference resolution
                 coref_premises = self.coref_model.get_coref_versions(
-                    sentence=sentence_level_alignment["premise"],
+                    sentence=sentence_level_alignment["source_passage"],
                     text=document,
                     sentences=sentences,
                     offsets=offsets,
@@ -103,7 +103,7 @@ class FENICE:
                     hypothesis_id=claim_id,
                     alignment_prefix="doc",
                 )
-                doc_level_alignment["premise"] = "DOCUMENT"
+                doc_level_alignment["source_passage"] = "DOCUMENT"
             sample_alignments = [
                 sentence_level_alignment,
                 coref_alignment,
@@ -113,7 +113,7 @@ class FENICE:
             alignment = self.max_alignment(sample_alignments)
             alignments.append(alignment)
         score = np.mean([al["score"] for al in alignments])
-        return {"alignments": alignments, "score": score}
+        return {"score": score, "alignments": alignments}
 
     def max_alignment(self, sample_alignments):
         sample_alignments = [s for s in sample_alignments if s is not None]
@@ -322,10 +322,10 @@ class FENICE:
                     alignment = (premises[i], [ent, contr, neut])
             return (
                 {
-                    "premise": alignment[0],
-                    "hypothesis": hypothesis,
                     "score": max_score,
-                    "nli_dist": alignment[1],
+                    "summary_claim": hypothesis,
+                    "source_passage": alignment[0],
+
                 },
                 scores,
             )
