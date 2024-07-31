@@ -78,12 +78,24 @@ batch = [
 results = fenice.score_batch(batch)
 print(results)
 
-'''
 [{'score': 0.8484095427307433, 'alignments': [{'score': 0.9968091815244406, 'summary_claim': 'Simone Biles made a triumphant return to the Olympic stage at the Paris 2024 Games.', 'source_passage': '\n        Simone Biles’ Olympic return is off to a sparkling start at Paris 2024 as the Americans competed in women’s qualifying Sunday (28 July). The U.S. is well in front with a total team score of 172.296, followed by Italy some 5.435 points back at 166.861. The People’s Republic of China is third with a 166.628.\n    \n         Reigning world silver medallists Brazil competed in the day’s final subdivision and sit fourth (166.499). In the all-around, Biles, the 2016 gold medallist, scored 59.566 ahead of 2022 world all-around champion Rebeca Andrade (57.700).'}, {'score': 0.9985068442765623, 'summary_claim': 'Biles competed in the women’s gymnastics qualifications.', 'source_passage': '\n        Simone Biles’ Olympic return is off to a sparkling start at Paris 2024 as the Americans competed in women’s qualifying Sunday (28 July). The U.S. is well in front with a total team score of 172.296, followed by Italy some 5.435 points back at 166.861. The People’s Republic of China is third with a 166.628.\n    \n         Reigning world silver medallists Brazil competed in the day’s final subdivision and sit fourth (166.499). In the all-around, Biles, the 2016 gold medallist, scored 59.566 ahead of 2022 world all-around champion Rebeca Andrade (57.700).'}, {'score': 0.9983009036513977, 'summary_claim': "Biles overcame a previous struggle with the 'twisties' that led to her withdrawal from events at the Tokyo 2020 Olympics.", 'source_passage': 'Three years ago, the American withdrew from the women’s team final and four subsequent individual finals at Tokyo 2020 to prioritize her mental health as she dealt with the ‘twisties.’ That seemed like a distant memory Sunday.\n    \n         Biles, 27, entered Bercy Arena to massive applause, looking relaxed as she smiled and waved to the audience. She looked even more relaxed on the balance beam where in the span of some 79 seconds, she put on a clinic, executing a near flawless routine that included a two layout stepout series and a full-twisting double back dismount. Biles earned a 14.733 for the routine.\n    \n        '}, {'score': 0.9821975510567427, 'summary_claim': 'Biles dazzled with strong performances on all apparatus.', 'source_passage': 'DOCUMENT'}, {'score': 0.9991946243681014, 'summary_claim': 'The U.S. team secured a commanding lead in the qualifications.', 'source_passage': '\n        Simone Biles’ Olympic return is off to a sparkling start at Paris 2024 as the Americans competed in women’s qualifying Sunday (28 July). The U.S. is well in front with a total team score of 172.296, followed by Italy some 5.435 points back at 166.861. The People’s Republic of China is third with a 166.628.\n    \n         Reigning world silver medallists Brazil competed in the day’s final subdivision and sit fourth (166.499). In the all-around, Biles, the 2016 gold medallist, scored 59.566 ahead of 2022 world all-around champion Rebeca Andrade (57.700).'}, {'score': 0.9942512132693082, 'summary_claim': 'Her routines showcased her resilience and skill.', 'source_passage': 'DOCUMENT'}, {'score': -0.03039351903134957, 'summary_claim': 'Her routines drew enthusiastic support from a star-studded audience.', 'source_passage': 'Three years ago, the American withdrew from the women’s team final and four subsequent individual finals at Tokyo 2020 to prioritize her mental health as she dealt with the ‘twisties.’'}]}]
 
 '''
 ```
+## AggreFact evaluation
+
+To replicate the evaluation on AggreFact:
+```sh
+PYTHONPATH=. python eval/aggrefact.py
+```
+
+
+
+## License
+This work is under the [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) license](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
 To cite this work in your research:
+
 ```sh
 @misc{scirè2024fenicefactualityevaluationsummarization,
       title={FENICE: Factuality Evaluation of summarization based on Natural language Inference and Claim Extraction}, 
@@ -95,14 +107,3 @@ To cite this work in your research:
       url={https://arxiv.org/abs/2403.02270}, 
 }
 ```
-
-## AggreFact evaluation
-To replicate the evaluation on AggreFact:
-```sh
-PYTHONPATH=. python eval/aggrefact.py
-```
-
-
-## License
-This work is under the [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) license](https://creativecommons.org/licenses/by-nc-sa/4.0/).
-
