@@ -68,7 +68,7 @@ The American is now set for five of six medal rounds, advancing with the team, i
 summary = 'Simone Biles made a triumphant return to the Olympic stage at the Paris 2024 Games, competing in the women’s gymnastics qualifications. Overcoming a previous struggle with the “twisties” that led to her withdrawal from events at the Tokyo 2020 Olympics, Biles dazzled with strong performances on all apparatus, helping the U.S. team secure a commanding lead in the qualifications. Her routines, including a near-flawless balance beam performance and a powerful Yurchenko double pike vault, showcased her resilience and skill, drawing enthusiastic support from a star-studded audience'
 
 batch = [
-    {"document": document "summary": "Test summary."}
+    {"document": document "summary": summary}
 ]
 
 results = fenice.score_batch(batch)
