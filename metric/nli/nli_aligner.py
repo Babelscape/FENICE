@@ -15,6 +15,8 @@ class NLIAligner:
     ):
         self.model_name = model_name
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+
+        self.device = device
         self.model = AutoModelForSequenceClassification.from_pretrained(model_name).to(
             device
         )
@@ -55,9 +57,8 @@ class NLIAligner:
             return_tensors="pt",
             truncation=True,
             max_length=self.max_length,
-        ).to("cuda:0")
+        ).to(self.device)
         input_ids = tokenized_input_seq_pairs["input_ids"]
-        print(input_ids.shape)
         token_type_ids = tokenized_input_seq_pairs["token_type_ids"]
         attention_mask = tokenized_input_seq_pairs["attention_mask"]
         with torch.no_grad():
