@@ -95,7 +95,7 @@ In total, our dataset features 332 (story, summary) pairs.
 
 ## AggreFact evaluation
 
-To replicate the evaluation on AggreFact:
+To replicate the evaluation of FENICE on AggreFact:
 ```sh
 PYTHONPATH=. python eval/aggrefact.py
 ```
