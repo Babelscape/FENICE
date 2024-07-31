@@ -86,7 +86,7 @@ print(results)
 ## Long-Form summarization Evaluation
 Check-out our dataset annotations for long-form summarization evaluation (Section 4.4 in the paper):
 
-🤗[Babelscape/story_summeval](https://huggingface.co/Babelscape/story_summeval)
+🤗 [Babelscape/story_summeval](https://huggingface.co/Babelscape/story_summeval)
 
 We provide binary factuality annotations for summaries of short stories (from Gutenberg and Wikisource).
 In total, our dataset features 332 (story, summary) pairs.
