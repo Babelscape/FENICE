@@ -1,22 +1,26 @@
 from typing import List, Dict, Optional
 import numpy as np
-import torch.cuda
+import torch
 from tqdm import tqdm
-from src.claim_extractor.claim_extractor import ClaimExtractor
-from src.coreference_resolution.coreference_resolution import CoreferenceResolution
-from src.nli.nli_aligner import NLIAligner
-from src.utils.utils import split_into_paragraphs, split_into_sentences_batched
+from metric.claim_extractor.claim_extractor import ClaimExtractor
+from metric.coreference_resolution.coreference_resolution import CoreferenceResolution
+from metric.nli.nli_aligner import NLIAligner
+from metric.utils.utils import split_into_paragraphs, split_into_sentences_batched
 
 
 class FENICE:
     def __init__(
         self,
         use_coref: bool = False,
-        num_sent_per_paragraph: int = 10,
-        sliding_paragraphs=False,
+        num_sent_per_paragraph: int = 5,
+        sliding_paragraphs=True,
+        sliding_stride: int = 1,
+        doc_level_nli=True,
+        paragraph_level_nli=True,
         claim_extractor_batch_size: int = 256,
         coreference_batch_size: int = 1,
         nli_batch_size: int = 256,
+        nli_max_length: int = 1024,
         device: str = "cuda:0",
     ) -> None:
         self.num_sent_per_paragraph = num_sent_per_paragraph
@@ -24,14 +28,18 @@ class FENICE:
         self.coreference_batch_size = coreference_batch_size
         self.nli_batch_size = nli_batch_size
         self.sliding_paragraphs = sliding_paragraphs
+        self.sliding_stride = sliding_stride
         self.sentences_cache = {}
         self.coref_clusters_cache = {}
         self.claims_cache = {}
         self.alignments_cache = {}
         self.use_coref = use_coref
+        self.doc_level_nli = doc_level_nli
+        self.paragraph_level_nli = paragraph_level_nli
         self.coref_model = (
             CoreferenceResolution(load_model=False) if use_coref else None
         )
+        self.nli_max_length = nli_max_length
         self.device = device
 
     def _score(self, sample_id: int, document: str, summary: str):
@@ -44,6 +52,7 @@ class FENICE:
             sentences,
             self.num_sent_per_paragraph,
             sliding_paragraphs=self.sliding_paragraphs,
+            sliding_stride=self.sliding_stride,
         )
         # claim extraction
         summary_id = self.get_id(sample_id, summary)
@@ -77,7 +86,7 @@ class FENICE:
                         alignment_prefix="coref",
                     )
             paragraph_level_alignment = None
-            if paragraphs:
+            if len(paragraphs) > 1 and self.paragraph_level_nli:
                 paragraph_level_alignment = self.get_alignment(
                     premises=paragraphs,
                     hypothesis=claim,
@@ -86,7 +95,7 @@ class FENICE:
                     alignment_prefix="par",
                 )
             doc_level_alignment = None
-            if len(paragraphs) > 1:
+            if self.doc_level_nli and len(paragraphs) > 1:
                 doc_level_alignment = self.get_alignment(
                     hypothesis=claim,
                     premises=[document],
@@ -153,6 +162,10 @@ class FENICE:
             desc="Computing FENICE...",
         ):
             predictions.append(self._score(sample_id, doc, summary))
+
+        del self.nli_aligner
+        torch.cuda.empty_cache()
+
         return predictions
 
     def cache(self, documents, summaries):
@@ -208,8 +221,11 @@ class FENICE:
 
     def cache_alignments(self, documents: List[str], summaries: List[str]):
         alignments_ids, all_pairs = [], []
+        alignment_ids_doc, all_pairs_doc = [], []
         self.nli_aligner = NLIAligner(
-            batch_size=self.nli_batch_size, device=self.device
+            batch_size=self.nli_batch_size,
+            device=self.device,
+            max_length=self.nli_max_length,
         )
         for sample_id in range(len(summaries)):
             summary_id = self.get_id(sample_id, summaries[sample_id])
@@ -220,22 +236,35 @@ class FENICE:
                 sentences,
                 self.num_sent_per_paragraph,
                 sliding_paragraphs=self.sliding_paragraphs,
+                sliding_stride=self.sliding_stride,
             )
             alignments_ids, all_pairs = self.compute_nli_pairs(
                 alignments_ids, all_pairs, claims, sample_id, sentences
             )
-            alignments_ids, all_pairs = self.compute_nli_pairs(
-                alignments_ids, all_pairs, claims, sample_id, paragraphs, prefix="par"
-            )
-            alignments_ids, all_pairs = self.compute_nli_pairs(
-                alignments_ids,
-                all_pairs,
-                claims,
-                sample_id,
-                [documents[sample_id]],
-                prefix="doc",
-            )
+            if self.paragraph_level_nli:
+                alignments_ids, all_pairs = self.compute_nli_pairs(
+                    alignments_ids,
+                    all_pairs,
+                    claims,
+                    sample_id,
+                    paragraphs,
+                    prefix="par",
+                )
+            if self.doc_level_nli:
+                alignment_ids_doc, all_pairs_doc = self.compute_nli_pairs(
+                    alignment_ids_doc,
+                    all_pairs_doc,
+                    claims,
+                    sample_id,
+                    [documents[sample_id]],
+                    prefix="doc",
+                )
         self.cache_alignment(alignments_ids, all_pairs)
+        self.nli_aligner.batch_size = 1
+        self.nli_aligner.max_length = 4096
+        self.cache_alignment(alignment_ids_doc, all_pairs_doc)
+        self.nli_aligner.batch_size = self.nli_batch_size
+        self.nli_max_length = self.nli_max_length
 
     def compute_nli_pairs(
         self, alignments_ids, all_pairs, claims, sample_id, premises, prefix=None

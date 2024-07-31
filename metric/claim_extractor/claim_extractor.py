@@ -2,7 +2,7 @@ from typing import List
 
 from tqdm import tqdm
 from transformers import T5ForConditionalGeneration, T5Tokenizer
-from src.utils.utils import chunks, split_into_sentences
+from metric.utils.utils import chunks, split_into_sentences, distinct
 
 
 class ClaimExtractor:
@@ -28,5 +28,6 @@ class ClaimExtractor:
             claims = self.model.generate(**tok_input)
             claims = self.tokenizer.batch_decode(claims, skip_special_tokens=True)
             claims = [split_into_sentences(c) for c in claims]
+            claims = [distinct(c) for c in claims]
             predictions.extend(claims)
         return predictions

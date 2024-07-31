@@ -1,8 +1,7 @@
-from typing import Optional
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
-from src.utils.utils import chunks
+from metric.utils.utils import chunks
 
 
 class NLIAligner:
@@ -11,6 +10,7 @@ class NLIAligner:
         model_name: str = "MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli",
         batch_size: int = 32,
         device: str = "cuda:0",
+        max_length: int = 512,
         **kwargs,
     ):
         self.model_name = model_name
@@ -19,6 +19,7 @@ class NLIAligner:
             device
         )
         self.batch_size = batch_size
+        self.max_length = max_length
 
     def score(self, premises, hypothesis, lower=False, disable_prog_bar: bool = False):
         if isinstance(hypothesis, str):
@@ -48,11 +49,17 @@ class NLIAligner:
 
     def score_sample(self, batch):
         tokenized_input_seq_pairs = self.tokenizer.batch_encode_plus(
-            batch, return_token_type_ids=True, padding=True, return_tensors="pt"
-        )
-        input_ids = tokenized_input_seq_pairs["input_ids"].to("cuda:0")
-        token_type_ids = tokenized_input_seq_pairs["token_type_ids"].to("cuda:0")
-        attention_mask = tokenized_input_seq_pairs["attention_mask"].to("cuda:0")
+            batch,
+            return_token_type_ids=True,
+            padding=True,
+            return_tensors="pt",
+            truncation=True,
+            max_length=self.max_length,
+        ).to("cuda:0")
+        input_ids = tokenized_input_seq_pairs["input_ids"]
+        print(input_ids.shape)
+        token_type_ids = tokenized_input_seq_pairs["token_type_ids"]
+        attention_mask = tokenized_input_seq_pairs["attention_mask"]
         with torch.no_grad():
             outputs = self.model(
                 input_ids,

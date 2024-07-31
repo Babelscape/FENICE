@@ -1,6 +1,6 @@
 import hashlib
 import pickle
-from typing import List, Tuple, Union
+from typing import List, Tuple, Union, Optional
 
 import spacy
 from tqdm import tqdm
@@ -21,10 +21,11 @@ def chunks(lst: List, n: int) -> List[List]:
         yield lst[i : i + n]
 
 
-def sliding_chunks(lst: List, n: int) -> List[List]:
+def sliding_chunks(lst: List, n: int, sliding_stride: int = 1) -> List[List]:
     """Yield sliding windows of n-sized chunks from lst."""
     for i in range(len(lst) - n + 1):
-        yield lst[i : i + n]
+        if i % sliding_stride == 0:
+            yield lst[i : i + n]
 
 
 def distinct(input_list: List) -> List:
@@ -76,12 +77,15 @@ def split_into_sentences_batched(
 
 
 def split_into_paragraphs(
-    sentences: List[str], num_sent_per_paragraph: int, sliding_paragraphs=True
+    sentences: List[str],
+    num_sent_per_paragraph: int,
+    sliding_paragraphs=True,
+    sliding_stride: int = 1,
 ) -> List[str]:
     if len(sentences) < num_sent_per_paragraph:
         return [" ".join(sentences)]
     paragraphs = (
-        list(sliding_chunks(sentences, num_sent_per_paragraph))
+        list(sliding_chunks(sentences, num_sent_per_paragraph, sliding_stride))
         if sliding_paragraphs
         else list(chunks(sentences, num_sent_per_paragraph))
     )

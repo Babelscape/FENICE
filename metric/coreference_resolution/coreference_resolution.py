@@ -2,7 +2,7 @@ from typing import List, Tuple
 from fastcoref import FCoref
 from tqdm import tqdm
 
-from src.utils.utils import chunks
+from metric.utils.utils import chunks
 
 
 class CoreferenceResolution:
