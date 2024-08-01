@@ -1,3 +1,9 @@
+<div align="center">
+  <img src="https://github.com/Babelscape/FENICE/Sapienza_Babelscape.png?raw=true" height="70">
+</div>
+<div align="center">
+  <img src="https://github.com/Babelscape/FENICE/logo.png?raw=true" height="70">
+</div>
 # FENICE
 
 FENICE (Factuality Evaluation of Summarization based on Natural Language Inference and Claim Extraction) is a factuality-oriented metric for summarization. 
