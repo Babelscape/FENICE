@@ -20,7 +20,7 @@ This package implements the FENICE metric, allowing users to evaluate the factua
 Factual consistency in summarization is critical for ensuring that the generated summaries accurately reflect the content of the original documents. 
 FENICE leverages NLI and claim extraction techniques to assess the factual alignment between a summary and its corresponding document.
 
-For more details, you can read the full paper: [Factuality Evaluation of Summarization based on Natural Language Inference and Claim Extraction](https://arxiv.org/abs/2403.02270).
+For more details, you can read the full paper: [FENICE: Factuality Evaluation of Summarization based on Natural Language Inference and Claim Extraction](https://arxiv.org/abs/2403.02270).
 
 ## Installation
 
