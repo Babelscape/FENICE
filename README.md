@@ -1,5 +1,13 @@
-# FENICE
+<div align="center">
 
+# FENICE: Factuality Evaluation of summarization based on NLI and Claim Extraction
+
+[![Conference](https://img.shields.io/badge/ACL-2024-4b44ce
+)](https://2024.aclweb.org/)
+[![Paper](http://img.shields.io/badge/paper-ACL--anthology-B31B1B.svg)](https://2024.aclweb.org/program/finding_papers/))
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
+</div>
 FENICE (Factuality Evaluation of Summarization based on Natural Language Inference and Claim Extraction) is a factuality-oriented metric for summarization. 
 This package implements the FENICE metric, allowing users to evaluate the factual consistency of document summaries.
 
