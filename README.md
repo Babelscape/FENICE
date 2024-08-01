@@ -4,7 +4,13 @@
 <div align="center">
   <img src="https://github.com/Babelscape/FENICE/logo.png?raw=true" height="70">
 </div>
-# FENICE
+
+# FENICE: Factuality Evaluation of summarization based on NLI and Claim Extraction
+
+[![Conference](https://img.shields.io/badge/ACL-2024-4b44ce
+)](https://2024.aclweb.org/)
+[![Paper](http://img.shields.io/badge/paper-ACL--anthology-B31B1B.svg)](https://2024.aclweb.org/program/finding_papers/)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 FENICE (Factuality Evaluation of Summarization based on Natural Language Inference and Claim Extraction) is a factuality-oriented metric for summarization. 
 This package implements the FENICE metric, allowing users to evaluate the factual consistency of document summaries.
@@ -90,16 +96,18 @@ print(results)
 ```
 
 ## Long-Form summarization Evaluation
-Check-out our dataset annotations for long-form summarization evaluation (Section 4.4 in the paper):
-🤗[Babelscape/story_summeval](https://huggingface.co/Babelscape/story_summeval)
-We provide binary factuality annotations for summaries of short stories (from Gutenberg and Wikisource).
-In total, our dataset features 332 (story, summary) pairs.
+Check-out our dataset of annotations for long-form summarization evaluation (Section 4.4 in the paper):
+
+🤗 [Babelscape/story-summeval](https://huggingface.co/datasets/Babelscape/story-summeval)
+
+We provide binary factuality annotations for summaries of stories (from Gutenberg and Wikisource).
+In total, our dataset features 319 (story, summary) pairs.
 
 
 
 ## AggreFact evaluation
 
-To replicate the evaluation on AggreFact:
+To replicate the evaluation of FENICE on AggreFact:
 ```sh
 PYTHONPATH=. python eval/aggrefact.py
 ```

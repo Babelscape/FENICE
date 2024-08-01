@@ -8,7 +8,7 @@ from metric.utils.utils import chunks, split_into_sentences, distinct
 class ClaimExtractor:
     def __init__(
         self,
-        model_name: str = "alescire94/t5-base-summarization-claim-extractor",
+        model_name: str = "Babelscape/t5-base-summarization-claim-extractor",
         device: str = "cuda:0",
         batch_size: int = 70,
     ):
