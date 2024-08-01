@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/Babelscape/FENICE/Sapienza_Babelscape.png?raw=true" height="70">
+  <img src="https://github.com/Babelscape/FENICE/blob/master/Sapienza_Babelscape.png" height="70">
 </div>
 <div align="center">
   <img src="https://github.com/Babelscape/FENICE/logo.png?raw=true" height="70">
