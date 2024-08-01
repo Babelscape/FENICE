@@ -1,9 +1,9 @@
-<div align="center">
-  <img src="https://github.com/Babelscape/FENICE/blob/master/Sapienza_Babelscape.png" height="70">
-</div>
-<div align="center">
+<div>
   <img src="https://github.com/Babelscape/FENICE/blob/master/logo.png" height="70">
+  <img src="https://github.com/Babelscape/FENICE/blob/master/Sapienza_Babelscape.png" height="70">
+
 </div>
+
 
 # FENICE: Factuality Evaluation of summarization based on NLI and Claim Extraction
 
