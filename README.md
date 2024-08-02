@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img src="https://github.com/Babelscape/FENICE/blob/master/logo.png" height="150", width="150">
+  <img src="https://github.com/Babelscape/FENICE/blob/master/new_logo.png" height="150", width="150">
 </div>
 
 # Factuality Evaluation of summarization based on Natural Language Inference and Claim Extraction
