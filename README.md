@@ -27,7 +27,7 @@ For more details, you can read the full paper: [FENICE: Factuality Evaluation of
 
 Create a conda environment:
 ```sh
-conda create -n FENICE python==3.10
+conda create -n FENICE python=3.10
 conda activate FENICE
 ```
 
