@@ -50,7 +50,7 @@ The package requires the following dependencies:
 
 These will be installed automatically when you install the FENICE package.
 
-Usage
+## Usage
 
 Here’s how you can use the FENICE package to evaluate the factual consistency of document summaries:
 
