@@ -116,17 +116,18 @@ PYTHONPATH=. python eval/aggrefact.py
 
 ## License
 This work is under the [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) license](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+## Citation Information
 
-To cite this work in your research:
 
-```sh
-@misc{scirè2024fenicefactualityevaluationsummarization,
-      title={FENICE: Factuality Evaluation of summarization based on Natural language Inference and Claim Extraction}, 
-      author={Alessandro Scirè and Karim Ghonim and Roberto Navigli},
-      year={2024},
-      eprint={2403.02270},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2403.02270}, 
+```bibtex
+
+@inproceedings{scire-etal-2024-fenice,
+    title     = "FENICE: Factuality Evaluation of summarization based on Natural language Inference and Claim Extraction",
+    author    = "Scirè, Alessandro and Karim, Ghonim and Navigli, Roberto",
+    booktitle = "Findings of the Association for Computational Linguistics: ACL 2024",
+    month     = aug,
+    year      = "2024",
+    address   = "Bangkok, Thailand",
+    publisher = "Association for Computational Linguistics",
 }
 ```
