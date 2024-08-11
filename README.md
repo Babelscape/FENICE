@@ -111,7 +111,7 @@ To replicate the evaluation of FENICE on AggreFact:
 ```sh
 PYTHONPATH=. python eval/aggrefact.py
 ```
-
+This script utilizes the data from the [AggreFact repository](https://github.com/Liyan06/AggreFact/tree/main/data), which we downloaded and converted into .jsonl format.
 
 
 ## License
