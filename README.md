@@ -125,12 +125,8 @@ This work is under the [Attribution-NonCommercial-ShareAlike 4.0 International (
 
 @inproceedings{scire-etal-2024-fenice,
     title = "{FENICE}: Factuality Evaluation of summarization based on Natural language Inference and Claim Extraction",
-    author = "Scir{\`e}, Alessandro  and
-      Ghonim, Karim  and
-      Navigli, Roberto",
-    editor = "Ku, Lun-Wei  and
-      Martins, Andre  and
-      Srikumar, Vivek",
+    author = "Scir{\`e}, Alessandro and Ghonim, Karim and Navigli, Roberto",
+    editor = "Ku, Lun-Wei  and Martins, Andre and Srikumar, Vivek",
     booktitle = "Findings of the Association for Computational Linguistics ACL 2024",
     month = aug,
     year = "2024",
