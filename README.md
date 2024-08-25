@@ -7,7 +7,7 @@
 
 [![Conference](https://img.shields.io/badge/ACL-2024-4b44ce
 )](https://2024.aclweb.org/)
-[![Paper](http://img.shields.io/badge/paper-ACL--anthology-B31B1B.svg)](https://2024.aclweb.org/program/finding_papers/)
+[![Paper](http://img.shields.io/badge/paper-ACL--anthology-B31B1B.svg)](https://aclanthology.org/2024.findings-acl.841/)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 <div align='center'>
@@ -21,7 +21,7 @@ This package implements the FENICE metric, allowing users to evaluate the factua
 Factual consistency in summarization is critical for ensuring that the generated summaries accurately reflect the content of the original documents. 
 FENICE leverages NLI and claim extraction techniques to assess the factual alignment between a summary and its corresponding document.
 
-For more details, you can read the full paper: [FENICE: Factuality Evaluation of Summarization based on Natural Language Inference and Claim Extraction](https://arxiv.org/abs/2403.02270).
+For more details, you can read the full paper: [FENICE: Factuality Evaluation of Summarization based on Natural Language Inference and Claim Extraction](https://aclanthology.org/2024.findings-acl.841/).
 
 ## 🛠️ Installation
 
