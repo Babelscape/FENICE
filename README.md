@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img src="https://github.com/Babelscape/FENICE/blob/master/new_logo.png" height="200", width="200">
+  <img src="https://github.com/Babelscape/FENICE/blob/master/new_logo.png?raw=True" height="200", width="200">
 </div>
 
 # Factuality Evaluation of summarization based on Natural Language Inference and Claim Extraction
@@ -11,7 +11,7 @@
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 <div align='center'>
-  <img src="https://github.com/Babelscape/FENICE/blob/master/Sapienza_Babelscape.png" height="70">
+  <img src="https://github.com/Babelscape/FENICE/blob/master/Sapienza_Babelscape.png?raw=True" height="70">
 </div>
 FENICE (Factuality Evaluation of Summarization based on Natural Language Inference and Claim Extraction) is a factuality-oriented metric for summarization. 
 This package implements the FENICE metric, allowing users to evaluate the factual consistency of document summaries.
@@ -34,7 +34,12 @@ conda activate FENICE
 To install the FENICE package, you can use `pip`:
 
 ```sh
-pip install git+https://github.com/Babelscape/FENICE.git
+pip install FENICE
+```
+
+install spacy model:
+```sh
+python -m spacy download en_core_web_sm
 ```
 
 ## Requirements
@@ -42,7 +47,6 @@ pip install git+https://github.com/Babelscape/FENICE.git
 The package requires the following dependencies:
 
 	•	spacy==3.7.4
-	•	en_core_web_sm
 	•	fastcoref==2.1.6
 	•	transformers~=4.38.2
 	•	sentencepiece==0.2.0
