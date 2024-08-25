@@ -7,7 +7,7 @@
 
 [![Conference](https://img.shields.io/badge/ACL-2024-4b44ce
 )](https://2024.aclweb.org/)
-[![Paper](http://img.shields.io/badge/paper-ACL--anthology-B31B1B.svg)](https://aclanthology.org/2024.findings-acl.841/)
+[![Paper](http://img.shields.io/badge/paper-ACL--anthology-B31B1B.svg)](https://aclanthology.org/2024.findings-acl.841.pdf)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 <div align='center'>
