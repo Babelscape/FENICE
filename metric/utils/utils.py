@@ -1,11 +1,18 @@
 import hashlib
 import pickle
-from typing import List, Tuple, Union, Optional
-
+from typing import List, Tuple, Union
 import spacy
+import sys
+import os
+from spacy.cli import download
 from tqdm import tqdm
 
-nlp = spacy.load("en_core_web_sm")
+try:
+    nlp = spacy.load("en_core_web_sm")
+except Exception as e:
+    os.environ["SPACY_WARNING_IGNORE"] = "true"  # Prevent interactive prompts
+    download("en_core_web_sm")
+    nlp = spacy.load("en_core_web_sm")
 
 
 def flatten(two_d_list: List[List]) -> List:

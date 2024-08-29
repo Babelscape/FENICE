@@ -1,18 +1,19 @@
 from setuptools import setup, find_packages
 
+# Call the function during setup
 setup(
     name="FENICE",
-    version="0.1.0",
+    version="0.1.14",
     author="Alessandro Scirè",
     author_email="scire@diag.uniroma1.it",
     description="This package contains the code to execute FENICE, a factuality-oriented metric for summarization",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/Babelscape/FENICE",
+    license="CC BY-NC-SA 4.0",
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.6",
@@ -21,7 +22,6 @@ setup(
         "torch",
         "tqdm",
         "spacy==3.7.4",
-        "en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.0/en_core_web_sm-3.7.0-py3-none-any.whl",
         "fastcoref==2.1.6",
         "transformers~=4.38.2",
         "sentencepiece==0.2.0",

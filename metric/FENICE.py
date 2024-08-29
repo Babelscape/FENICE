@@ -21,7 +21,6 @@ class FENICE:
         coreference_batch_size: int = 1,
         nli_batch_size: int = 256,
         nli_max_length: int = 1024,
-        device: str = "cuda:0",
     ) -> None:
         self.num_sent_per_paragraph = num_sent_per_paragraph
         self.claim_extractor_batch_size = claim_extractor_batch_size
@@ -40,7 +39,7 @@ class FENICE:
             CoreferenceResolution(load_model=False) if use_coref else None
         )
         self.nli_max_length = nli_max_length
-        self.device = device
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
 
     def _score(self, sample_id: int, document: str, summary: str):
         doc_id = self.get_id(sample_id, document)
@@ -325,7 +324,6 @@ class FENICE:
                     "score": max_score,
                     "summary_claim": hypothesis,
                     "source_passage": alignment[0],
-
                 },
                 scores,
             )
