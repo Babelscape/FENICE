@@ -37,11 +37,6 @@ To install the FENICE package, you can use `pip`:
 pip install FENICE
 ```
 
-install spacy model:
-```sh
-python -m spacy download en_core_web_sm
-```
-
 ## Requirements
 
 The package requires the following dependencies:
